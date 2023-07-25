@@ -14,10 +14,31 @@ package paquete2;
  */
 public class PlanPostPagoMin extends PlanCelular {
 
+    
+
     private int numMinNacionales;
     private double costMinNacionales;
     private int numMinInternacio;
     private double costMinInternacio;
+    
+     public PlanPostPagoMin(String nombreApellidoP,
+            String pasaporteP, String ciudadP,
+            String barrioP, String marcaC, String modeloC,
+            int numeroC, int minutosNa,
+            double costoMinutoNa, int minutosInter,
+            double costoMinutoInter) {
+
+        // Super
+        super(nombreApellidoP, pasaporteP, ciudadP, barrioP,
+                marcaC, modeloC, numeroC);
+
+        // Inicialización de los atributos específicos de este tipo de plan
+        numMinNacionales = minutosNa;
+        costMinNacionales = costoMinutoNa;
+        numMinInternacio = minutosInter;
+        costMinInternacio = costoMinutoInter;
+
+    }
 
     public void establecerNumMinNacionales(int numMinNacionales) {
         this.numMinNacionales = numMinNacionales;
@@ -52,7 +73,7 @@ public class PlanPostPagoMin extends PlanCelular {
     }
 
     @Override
-    public void calcularpagoMensualTotal() {
+    public void calcularPagoMensualTotal() {
         pagoMensualTotal = (numMinNacionales * costMinNacionales) + (numMinInternacio * costMinInternacio);
 
     }

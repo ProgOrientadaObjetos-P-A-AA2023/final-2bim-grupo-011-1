@@ -12,12 +12,30 @@ package paquete2;
  */
 public class PlanPostPagoMegas extends PlanCelular {
 
+   
+
     private double megas;
     private double costoMegas;
     private double tarifaBase;
 
+  public PlanPostPagoMegas(String nombreApellidoP,
+            String pasaporteP, String ciudadP,
+            String barrioP, String marcaC, String modeloC,
+            int numeroC, double megasEnG, double costoPorG,
+            double tarifaB) {
+        // Super
+        super(nombreApellidoP, pasaporteP, ciudadP, barrioP, marcaC, modeloC,
+                numeroC);
+
+        // Inicialización de los atributos específicos de este tipo de plan
+        megas = megasEnG;
+        costoMegas = costoPorG;
+        tarifaBase = tarifaB;
+
+    }
+
     @Override
-    public void calcularpagoMensualTotal() {
+    public void calcularPagoMensualTotal() {
         pagoMensualTotal = tarifaBase + (megas * costoMegas);
     }
 

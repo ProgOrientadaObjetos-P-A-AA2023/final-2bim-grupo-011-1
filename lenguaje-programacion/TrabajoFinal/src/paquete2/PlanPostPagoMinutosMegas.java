@@ -16,6 +16,26 @@ public class PlanPostPagoMinutosMegas extends PlanCelular {
     private double costoMin;
     private double megas;
     private double costoGiga;
+    
+    public PlanPostPagoMinutosMegas(String nombreApellidoP,
+            String pasaporteP, String ciudadP,
+            String barrioP, String marcaC, String modeloC,
+            int numeroC,
+            int min, double costoM,
+            double megasEnG, double costoPorG,
+            double porcentajeD) {
+        // Super
+        super(nombreApellidoP, pasaporteP, ciudadP, barrioP,
+                marcaC, modeloC, numeroC);
+
+        // Inicialización de los atributos específicos de este tipo de plan
+        minutos = min;
+        costoMin = costoM;
+        megas = megasEnG;
+        costoGiga = costoPorG;
+
+
+    }
 
     public void setMinutos(int minutos) {
         this.minutos = minutos;
@@ -34,7 +54,7 @@ public class PlanPostPagoMinutosMegas extends PlanCelular {
     }
 
     @Override
-    public void calcularpagoMensualTotal() {
+    public void calcularPagoMensualTotal() {
         pagoMensualTotal = (minutos * costoMin) + (megas * costoGiga);
     }
 

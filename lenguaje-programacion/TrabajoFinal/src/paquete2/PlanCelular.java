@@ -12,8 +12,7 @@ package paquete2;
  */
 public abstract class PlanCelular {
 
-    protected String nombre;
-    protected String apellido;
+    protected String nombres;
     protected String pasaporte;
     protected String ciudad;
     protected String barrio;
@@ -21,16 +20,29 @@ public abstract class PlanCelular {
     protected String modelo;
     protected int numCelular;
     protected double pagoMensualTotal;
+    
+    public PlanCelular(String nombreApellidoP, String pasaporteP,
+            String ciudadP, String barrioP,
+            String marcaC, String modeloC,
+            int numeroC) {
 
-    public abstract void calcularpagoMensualTotal();
+        nombres = nombreApellidoP;
+        pasaporte = pasaporteP;
+        ciudad = ciudadP;
+        barrio = barrioP;
+        marca= marcaC;
+        modelo = modeloC;
+        numCelular = numeroC;
+
+    }
+
+    public abstract void calcularPagoMensualTotal();
 
     public void establecerNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombres = nombre;
     }
 
-    public void establecerApellido(String apellido) {
-        this.apellido = apellido;
-    }
+
 
     public void establecerPasaporte(String pasaporte) {
         this.pasaporte = pasaporte;
@@ -56,13 +68,11 @@ public abstract class PlanCelular {
         this.numCelular = numCelular;
     }
 
-    public String obtenerNombre() {
-        return nombre;
+    public String obtenerNombres() {
+        return nombres;
     }
 
-    public String obtenerApellido() {
-        return apellido;
-    }
+
 
     public String obtenerPasaporte() {
         return pasaporte;
@@ -98,14 +108,13 @@ public abstract class PlanCelular {
         String cadena = String.format("---Datos del consumidor---\n");
 
         cadena = String.format("%sNombre: %s\n"
-                + "Apellido: %s\n"
                 + "Pasaporte: %s\n"
                 + "Ciudad: %s\n"
                 + "Barrio: %s\n"
                 + "Marca del teléfono: %s\n"
                 + "Modelo: %s\n"
                 + "Número celular: %s\n",
-                cadena, obtenerNombre(), obtenerApellido(),
+                cadena, obtenerNombres(), 
                 obtenerPasaporte(), obtenerCiudad(),
                 obtenerBarrio(), obtenerMarca(), obtenerModelo(),
                 obtenerNumCelular());
