@@ -77,6 +77,7 @@ public class Inicio {
 
                         System.out.println("Ingrese el costo del minuto internacional:");
                         double costoMinutoInternacional = sc.nextDouble();
+
                         PlanPostPagoMin planminutos = new PlanPostPagoMin(nombres,
                                 pasaporte,
                                 ciudad,
@@ -96,14 +97,95 @@ public class Inicio {
                     }
                     case 2 -> {
 
+                        System.out.print("  Ingrese el número de minutos nacionales:\n  > ");
+                        int minutosN = sc.nextInt();
+
+                        System.out.print("  Ingrese el costo de cada minuto nacional:\n  > ");
+                        double costoMinutosN = sc.nextDouble();
+
+                        System.out.print("  Ingrese el número de mintos internacionales:\n  > ");
+                        int minutosI = sc.nextInt();
+
+                        System.out.print("  Ingrese el costo de minuto internacional:\n  > ");
+                        double costoMinutosI = sc.nextDouble();
+
+                        sc.nextLine();
+                        PlanPostPagoMin p = new PlanPostPagoMin(nombres,
+                                pasaporte,
+                                ciudad,
+                                barrio,
+                                marca,
+                                modelo,
+                                numero,
+                                minutosN,
+                                costoMinutosN,
+                                minutosI,
+                                costoMinutosI);
+
+                        p.calcularPagoMensualTotal();
+                        c.insertarPlanPostPagoMinutos(p);
                     }
                     case 3 -> {
                         
 
+
+                        System.out.print("  Ingrese el número de megas expresado en Gigas:\n  > ");
+                        int megas = sc.nextInt();
+
+                        System.out.print("  Ingrese el costo de cada Giga:\n  > ");
+                        double costoGiga = sc.nextDouble();
+
+                        System.out.print("  Ingrese la tarifa base:\n  > ");
+                        double tarifa = sc.nextDouble();
+
+                        sc.nextLine();
+
+                        PlanPostPagoMegas p = new PlanPostPagoMegas(nombres,
+                                pasaporte,
+                                ciudad,
+                                barrio,
+                                marca,
+                                modelo,
+                                numero,
+                                megas,
+                                costoGiga,
+                                tarifa);
+                        c.insertarPlanPostPagoMegas(p);
+
                     }
 
                     case 4 -> {
+                        
 
+                       
+                        System.out.print("  Ingrese el número de minutos:\n  > ");
+                        int minutos = sc.nextInt();
+
+                        System.out.print("  Ingrese el costo de cada minuto:\n  > ");
+                        double costoMinutos = sc.nextDouble();
+
+                        System.out.print("  Ingrese el número de megas expresado en Gigas:\n  > ");
+                        int megas = sc.nextInt();
+
+                        System.out.print("  Ingrese el costo de cada Giga:\n  > ");
+                        double costoGiga = sc.nextDouble();
+
+                        sc.nextLine();
+                        
+
+                      PlanPostPagoMinutosMegas p = new PlanPostPagoMinutosMegas(nombres,
+                                pasaporte,
+                                ciudad,
+                                barrio,
+                                marca,
+                                modelo,
+                                numero,
+                                minutos,
+                                costoMinutos,
+                                megas,
+                                costoGiga);
+                      
+                        c.insertarPlanPostPagoMinutosMegas(p);
                     }
 
                     case 0 -> {
@@ -117,6 +199,13 @@ public class Inicio {
             }
 
         } while (opc != 0);
+
+        c.establecerListaPlanCelular();
+
+        System.out.println("=".repeat(75));
+        for (int i = 0; i < c.obtenerLista().size(); i++) {
+            System.out.printf("  Plan (%d):\n%s\n", i + 1, c.obtenerLista().get(i));
+        }
 
     }
 

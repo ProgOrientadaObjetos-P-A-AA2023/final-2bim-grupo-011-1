@@ -19,6 +19,7 @@ import paquete2.*;
 public class Enlace {
 
     private Connection conn;
+    private ArrayList<PlanCelular> lista;
 
     public void establecerConexion() {
 
@@ -76,7 +77,7 @@ public class Enlace {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO PlanPostPagoMegas(nombres,"
+            String data = String.format("INSERT INTO planPostPagoMegas(nombres,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, gigas,"
                     + "costoGiga, tarifa, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %.2f, "
@@ -107,23 +108,23 @@ public class Enlace {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO PlanPostPagoMinutosMegas(nombres,"
+            String data = String.format("INSERT INTO planPostPagoMinutosMegas(nombres,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, minutos,"
                     + "costoMinutos, gigas, costoGiga, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %d,"
                     + "%.2f, %.2f, %.2f, %.2f)",
-                    plan.obtenerNombreApellidoPropietario(),
-                    plan.obtenerPasaportePropietario(),
-                    plan.obtenerCiudadPropietaria(),
-                    plan.obtenerBarrioPropietario(),
-                    plan.obtenerMarcaCelular(),
-                    plan.obtenerModeloCelular(),
-                    plan.obtenerNumeroCelular(),
+                    plan.obtenerNombres(),
+                    plan.obtenerPasaporte(),
+                    plan.obtenerCiudad(),
+                    plan.obtenerBarrio(),
+                    plan.obtenerMarca(),
+                    plan.obtenerModelo(),
+                    plan.obtenerNumCelular(),
                     plan.obtenerMinutos(),
-                    plan.obtenerCostoMinuto(),
-                    plan.obtenerMegasEnGigas(),
-                    plan.obtenerCostoPorGiga(),
-                    plan.obtenerPagoMensual());
+                    plan.obtenerCostoMin(),
+                    plan.obtenerMegas(),
+                    plan.obtenerCostoGiga(),
+                    plan.obtenerPagoMensualTotal());
 
             statement.executeUpdate(data);
             obtenerConexion().close();
@@ -139,25 +140,25 @@ public class Enlace {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO PlanPostPagoMinutosMegasEconomico"
+            String data = String.format("INSERT INTO planPostPagoMinutosMegasEconomico"
                     + "(nombres, pasaporte, ciudad, barrio, marca, modelo, "
                     + "numero, minutos, costoMinutos, gigas, costoGiga, "
                     + "descuento, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s',"
                     + "%d, %.2f, %.2f, %.2f, %.2f, %.2f)",
-                    plan.obtenerNombreApellidoPropietario(),
-                    plan.obtenerPasaportePropietario(),
-                    plan.obtenerCiudadPropietaria(),
-                    plan.obtenerBarrioPropietario(),
-                    plan.obtenerMarcaCelular(),
-                    plan.obtenerModeloCelular(),
-                    plan.obtenerNumeroCelular(),
+                    plan.obtenerNombres(),
+                    plan.obtenerPasaporte(),
+                    plan.obtenerCiudad(),
+                    plan.obtenerBarrio(),
+                    plan.obtenerMarca(),
+                    plan.obtenerModelo(),
+                    plan.obtenerNumCelular(),
                     plan.obtenerMinutos(),
-                    plan.obtenerCostoMinuto(),
-                    plan.obtenerMegasEnGigas(),
-                    plan.obtenerCostoPorGiga(),
-                    plan.obtenerPorcentajeDescuento(),
-                    plan.obtenerPagoMensual());
+                    plan.obtenerCostoMin(),
+                    plan.obtenerMegas(),
+                    plan.obtenerCostoGiga(),
+                    plan.obtenerPorcentaje(),
+                    plan.obtenerPagoMensualTotal());
 
             statement.executeUpdate(data);
             obtenerConexion().close();
@@ -168,13 +169,13 @@ public class Enlace {
         }
     }
 
-      public ArrayList<PlanCelular> obtenerDataPlanes() {
-        ArrayList<PlanCelular> lista = new ArrayList<>();
+      public void establecerListaPlanCelular() {
+        
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
 
-            String data = "Select * from PlanPostPagoMinutos;";
+            String data = "Select * from planPostPagoMinutos;";
             ResultSet rs = statement.executeQuery(data);
             while (rs.next()) {
 
@@ -194,7 +195,7 @@ public class Enlace {
                 lista.add(plan);
             }
 
-            String data2 = "Select * from PlanPostPagoMegas;";
+            String data2 = "Select * from planPostPagoMegas;";
             rs = statement.executeQuery(data2);
             while (rs.next()) {
 
@@ -214,7 +215,7 @@ public class Enlace {
                 lista.add(plan);
             }
 
-            String data3 = "Select * from PlanPostPagoMinutosMegas;";
+            String data3 = "Select * from planPostPagoMinutosMegas;";
             rs = statement.executeQuery(data3);
             while (rs.next()) {
 
@@ -234,7 +235,7 @@ public class Enlace {
                 lista.add(plan);
             }
 
-            String data4 = "Select * from PlanPostPagoMinutosMegasEconomico;";
+            String data4 = "Select * from planPostPagoMinutosMegasEconomico;";
             rs = statement.executeQuery(data4);
             while (rs.next()) {
 
@@ -261,6 +262,9 @@ public class Enlace {
             System.out.println(e.getMessage());
 
         }
+        
+    }
+       public ArrayList<PlanCelular> obtenerLista() {
         return lista;
     }
 
