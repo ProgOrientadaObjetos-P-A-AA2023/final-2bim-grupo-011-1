@@ -32,7 +32,7 @@ public class Inicio {
         // Se crea el enlace
         Enlace c = new Enlace();
         do {
-            System.out.println("Planes de Pago");
+            System.out.println("Planes de Pago===========================");
             System.out.println("=========================================");
             System.out.println("Plan Postpago Minutos Megas Economico [1]");
             System.out.println("Plan Postpago Minutos                 [2]");
@@ -97,16 +97,16 @@ public class Inicio {
                     }
                     case 2 -> {
 
-                        System.out.print("  Ingrese el número de minutos nacionales:\n  > ");
+                        System.out.print("Ingrese el número de minutos nacionales:");
                         int minutosN = sc.nextInt();
 
-                        System.out.print("  Ingrese el costo de cada minuto nacional:\n  > ");
+                        System.out.print("Ingrese el costo de cada minuto nacional:");
                         double costoMinutosN = sc.nextDouble();
 
-                        System.out.print("  Ingrese el número de mintos internacionales:\n  > ");
+                        System.out.print("Ingrese el número de mintos internacionales:");
                         int minutosI = sc.nextInt();
 
-                        System.out.print("  Ingrese el costo de minuto internacional:\n  > ");
+                        System.out.print("Ingrese el costo de minuto internacional:");
                         double costoMinutosI = sc.nextDouble();
 
                         sc.nextLine();
@@ -126,16 +126,14 @@ public class Inicio {
                         c.insertarPlanPostPagoMinutos(p);
                     }
                     case 3 -> {
-                        
 
-
-                        System.out.print("  Ingrese el número de megas expresado en Gigas:\n  > ");
+                        System.out.print("Ingrese el número de megas expresado en Gigas:");
                         int megas = sc.nextInt();
 
-                        System.out.print("  Ingrese el costo de cada Giga:\n  > ");
+                        System.out.print("Ingrese el costo de cada Giga:");
                         double costoGiga = sc.nextDouble();
 
-                        System.out.print("  Ingrese la tarifa base:\n  > ");
+                        System.out.print("Ingrese la tarifa base: ");
                         double tarifa = sc.nextDouble();
 
                         sc.nextLine();
@@ -155,25 +153,22 @@ public class Inicio {
                     }
 
                     case 4 -> {
-                        
 
-                       
-                        System.out.print("  Ingrese el número de minutos:\n  > ");
+                        System.out.print("Ingrese el número de minutos:");
                         int minutos = sc.nextInt();
 
-                        System.out.print("  Ingrese el costo de cada minuto:\n  > ");
+                        System.out.print("Ingrese el costo de cada minuto:");
                         double costoMinutos = sc.nextDouble();
 
-                        System.out.print("  Ingrese el número de megas expresado en Gigas:\n  > ");
+                        System.out.print("Ingrese el número de megas expresado en Gigas:");
                         int megas = sc.nextInt();
 
-                        System.out.print("  Ingrese el costo de cada Giga:\n  > ");
+                        System.out.print("Ingrese el costo de cada Giga:");
                         double costoGiga = sc.nextDouble();
 
                         sc.nextLine();
-                        
 
-                      PlanPostPagoMinutosMegas p = new PlanPostPagoMinutosMegas(nombres,
+                        PlanPostPagoMinutosMegas p = new PlanPostPagoMinutosMegas(nombres,
                                 pasaporte,
                                 ciudad,
                                 barrio,
@@ -184,7 +179,7 @@ public class Inicio {
                                 costoMinutos,
                                 megas,
                                 costoGiga);
-                      
+
                         c.insertarPlanPostPagoMinutosMegas(p);
                     }
 

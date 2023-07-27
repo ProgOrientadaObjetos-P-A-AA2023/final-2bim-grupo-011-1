@@ -1,3 +1,5 @@
+
+//
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -25,7 +27,7 @@ public class Enlace {
 
         try {
             // db parameters  
-            String url = "jdbc:sqlite:bd/base001.base";
+            String url = "jdbc:sqlite:bd/PlanesCelulares.bd";
             // create a connection to the database  
             conn = DriverManager.getConnection(url);
             // System.out.println(conn.isClosed());
@@ -49,7 +51,7 @@ public class Enlace {
             String data = String.format("INSERT INTO planPostPagoMinutos(nombres,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, minutosNacionales,"
                     + "costoNacional, minutosInternacionales, costoInternacional, pago)"
-                    + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %d, %.2f, %d, %.2f, %.2f)",
+                    + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s)",
                     plan.obtenerNombres(),
                     plan.obtenerPasaporte(),
                     plan.obtenerCiudad(),
@@ -80,8 +82,8 @@ public class Enlace {
             String data = String.format("INSERT INTO planPostPagoMegas(nombres,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, gigas,"
                     + "costoGiga, tarifa, pago)"
-                    + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %.2f, "
-                    + "%.2f, %.2f, %.2f)",
+                    + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %s, "
+                    + "%s, %s, %s)",
                     plan.obtenerNombres(),
                     plan.obtenerPasaporte(),
                     plan.obtenerCiudad(),
@@ -111,8 +113,8 @@ public class Enlace {
             String data = String.format("INSERT INTO planPostPagoMinutosMegas(nombres,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, minutos,"
                     + "costoMinutos, gigas, costoGiga, pago)"
-                    + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %d,"
-                    + "%.2f, %.2f, %.2f, %.2f)",
+                    + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %s,"
+                    + "%s, %s, %s, %s)",
                     plan.obtenerNombres(),
                     plan.obtenerPasaporte(),
                     plan.obtenerCiudad(),
@@ -145,7 +147,7 @@ public class Enlace {
                     + "numero, minutos, costoMinutos, gigas, costoGiga, "
                     + "descuento, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s',"
-                    + "%d, %.2f, %.2f, %.2f, %.2f, %.2f)",
+                    + "%s, %s, %s, %s, %s, %s)",
                     plan.obtenerNombres(),
                     plan.obtenerPasaporte(),
                     plan.obtenerCiudad(),
@@ -192,6 +194,7 @@ public class Enlace {
                         rs.getInt("minutosInternacionales"),
                         rs.getDouble("costoInternacional"));
                 plan.calcularPagoMensualTotal();
+                
                 lista.add(plan);
             }
 
