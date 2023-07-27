@@ -2,7 +2,7 @@
 
 <ClassDiagram name="TrabajoFinal">
   <ClassDiagramComponents>
-    <Class name="PlanCelular" package="paquete2" visibility="public" isAbstract="true" xPosition="83.0" yPosition="77.0">
+    <Class name="PlanCelular" package="paquete2" visibility="public" isAbstract="true" xPosition="271.0" yPosition="642.0">
       <Fields>
         <Field name="nombres" type="String" visibility="protected"/>
         <Field name="pasaporte" type="String" visibility="protected"/>
@@ -58,7 +58,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="PlanPostPagoMegas" package="paquete2" visibility="public" xPosition="1448.0" yPosition="810.0">
+    <Class name="PlanPostPagoMegas" package="paquete2" visibility="public" xPosition="600.0" yPosition="75.0">
       <Fields>
         <Field name="megas" type="double" visibility="private"/>
         <Field name="costoMegas" type="double" visibility="private"/>
@@ -95,7 +95,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="PlanPostPagoMin" package="paquete2" visibility="public" xPosition="43.0" yPosition="822.0">
+    <Class name="PlanPostPagoMin" package="paquete2" visibility="public" xPosition="1752.0" yPosition="46.0">
       <Fields>
         <Field name="numMinNacionales" type="int" visibility="private"/>
         <Field name="costMinNacionales" type="double" visibility="private"/>
@@ -138,7 +138,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="PlanPostPagoMinMegasEco" package="paquete2" visibility="public" xPosition="1061.0" yPosition="124.0">
+    <Class name="PlanPostPagoMinMegasEco" package="paquete2" visibility="public" xPosition="526.0" yPosition="1484.0">
       <Fields>
         <Field name="minutos" type="int" visibility="private"/>
         <Field name="costoMin" type="double" visibility="private"/>
@@ -187,7 +187,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="PlanPostPagoMinutosMegas" package="paquete2" visibility="public" xPosition="30.0" yPosition="1278.0">
+    <Class name="PlanPostPagoMinutosMegas" package="paquete2" visibility="public" xPosition="2372.0" yPosition="642.0">
       <Fields>
         <Field name="minutos" type="int" visibility="private"/>
         <Field name="costoMin" type="double" visibility="private"/>
@@ -230,7 +230,7 @@
         <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Enlace" package="trabajoFinal1" visibility="public" xPosition="1484.0" yPosition="1684.0">
+    <Class name="Enlace" package="trabajoFinal1" visibility="public" xPosition="1683.0" yPosition="952.0">
       <Fields>
         <Field name="conn" type="Connection" visibility="private"/>
         <Field name="lista" type="ArrayList&lt;PlanCelular&gt;" visibility="private"/>
@@ -251,21 +251,24 @@
         <Method name="insertarPlanPostPagoMinutosMegasEconomico" returnType="void" visibility="public">
           <Argument type="PlanPostPagoMinMegasEco" name="plan"/>
         </Method>
-        <Method name="establecerListaPlanCelular" returnType="void" visibility="public"/>
+        <Method name="establecerListaPlanPostPagoMinutos" returnType="void" visibility="public"/>
+        <Method name="establecerListaPlanPostPagoMegas" returnType="void" visibility="public"/>
+        <Method name="establecerListaPlanPostPagoMinutosMegas" returnType="void" visibility="public"/>
+        <Method name="establecerListaPlanPostPagoMinutosMegasEconomico" returnType="void" visibility="public"/>
         <Method name="obtenerLista" returnType="ArrayList&lt;PlanCelular&gt;" visibility="public"/>
       </Methods>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanPostPagoMinMegasEco" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanPostPagoMin" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanCelular" sourceCardinality="1..1" targetCardinality="1..1"/>
     <IsRelation name="is" source="paquete2.PlanPostPagoMegas" target="paquete2.PlanCelular"/>
-    <IsRelation name="is" source="paquete2.PlanPostPagoMinutosMegas" target="paquete2.PlanCelular"/>
+    <IsRelation name="is" source="paquete2.PlanPostPagoMin" target="paquete2.PlanCelular"/>
     <HasRelation name="lista" source="trabajoFinal1.Enlace" target="paquete2.PlanCelular" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;PlanCelular&gt;"/>
     <IsRelation name="is" source="paquete2.PlanPostPagoMinMegasEco" target="paquete2.PlanCelular"/>
-    <IsRelation name="is" source="paquete2.PlanPostPagoMin" target="paquete2.PlanCelular"/>
-    <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanPostPagoMinutosMegas" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanPostPagoMegas" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanPostPagoMinutosMegas" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="paquete2.PlanPostPagoMinutosMegas" target="paquete2.PlanCelular"/>
+    <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanPostPagoMin" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanPostPagoMinMegasEco" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="trabajoFinal1.Enlace" target="paquete2.PlanCelular" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>

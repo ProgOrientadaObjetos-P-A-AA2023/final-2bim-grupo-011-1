@@ -121,7 +121,6 @@ public class Enlace {
                     plan.obtenerMarca(),
                     plan.obtenerModelo(),
                     plan.obtenerNumCelular(),
-                    
                     plan.obtenerMinutos(),
                     plan.obtenerCostoMin(),
                     plan.obtenerMegas(),
