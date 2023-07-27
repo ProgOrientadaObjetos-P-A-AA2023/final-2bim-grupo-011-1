@@ -58,15 +58,17 @@ public class PlanPostPagoMinMegasEco extends PlanCelular {
     }
 
     public void establecerPorcentaje(double porcentaje) {
-        this.porcentaje = porcentaje / 100;
+        this.porcentaje = porcentaje;
     }
 
     @Override
     public void calcularPagoMensualTotal() {
-        pagoMensualTotal = ((minutos * costoMin) + (megas * costoGiga)) * porcentaje;
+        
+        pagoMensualTotal = ((minutos * costoMin) + (megas * costoGiga))
+                -((minutos * costoMin) + (megas * costoGiga)) * (porcentaje/100);
 
     }
-
+ 
     public int obtenerMinutos() {
         return minutos;
     }
@@ -104,7 +106,7 @@ public class PlanPostPagoMinMegasEco extends PlanCelular {
                 obtenerCostoMin(),
                 obtenerMegas(),
                 obtenerCostoGiga(),
-                (obtenerPorcentaje() * 100), obtenerPagoMensualTotal());
+                (obtenerPorcentaje()), obtenerPagoMensualTotal());
 
         return cadena;
 

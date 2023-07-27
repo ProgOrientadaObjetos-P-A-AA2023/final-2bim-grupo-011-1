@@ -17,7 +17,8 @@ public class PlanPostPagoMinutosMegas extends PlanCelular {
     private double megas;
     private double costoGiga;
     
-    public PlanPostPagoMinutosMegas(String nombreApellidoP, String pasaporteP, String ciudadP, String barrioP, String marcaC, String modeloC, int numeroC, int m, double costoM, double megasEnG, double costoPorG) {
+    public PlanPostPagoMinutosMegas(String nombreApellidoP, String pasaporteP, String ciudadP,
+            String barrioP, String marcaC, String modeloC, int numeroC, int m, double costoM, double megasEnG, double costoPorG) {
         // Super
         super(nombreApellidoP, pasaporteP, ciudadP, barrioP,
                 marcaC, modeloC, numeroC);

@@ -1,4 +1,3 @@
-
 //
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,7 +20,7 @@ import paquete2.*;
 public class Enlace {
 
     private Connection conn;
-    private ArrayList<PlanCelular> lista;
+    private ArrayList<PlanCelular> lista = new ArrayList<>();
 
     public void establecerConexion() {
 
@@ -48,7 +47,7 @@ public class Enlace {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO planPostPagoMinutos(nombres,"
+            String data = String.format("INSERT INTO planPostPagoMinutos(nombre,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, minutosNacionales,"
                     + "costoNacional, minutosInternacionales, costoInternacional, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s)",
@@ -79,7 +78,7 @@ public class Enlace {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO planPostPagoMegas(nombres,"
+            String data = String.format("INSERT INTO planPostPagoMegas(nombre,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, gigas,"
                     + "costoGiga, tarifa, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %s, "
@@ -110,7 +109,7 @@ public class Enlace {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO planPostPagoMinutosMegas(nombres,"
+            String data = String.format("INSERT INTO planPostPagoMinutosMegas(nombre,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, minutos,"
                     + "costoMinutos, gigas, costoGiga, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %s,"
@@ -143,8 +142,8 @@ public class Enlace {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
             String data = String.format("INSERT INTO planPostPagoMinutosMegasEconomico"
-                    + "(nombres, pasaporte, ciudad, barrio, marca, modelo, "
-                    + "numero, minutos, costoMinutos, gigas, costoGiga, "
+                    + "(nombre, pasaporte, ciudad, barrio, marca, modelo, "
+                    + "numero, minutos, costoMinutos, gigas, costoGigas, "
                     + "descuento, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s',"
                     + "%s, %s, %s, %s, %s, %s)",
@@ -170,9 +169,13 @@ public class Enlace {
 
         }
     }
+    
+    
+    
+    
 
-      public void establecerListaPlanCelular() {
-        
+    public void establecerListaPlanPostPagoMinutos() {
+
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
@@ -182,7 +185,7 @@ public class Enlace {
             while (rs.next()) {
 
                 PlanPostPagoMin plan = new PlanPostPagoMin(
-                        rs.getString("nombres"),
+                        rs.getString("nombre"),
                         rs.getString("pasaporte"),
                         rs.getString("ciudad"),
                         rs.getString("barrio"),
@@ -194,36 +197,66 @@ public class Enlace {
                         rs.getInt("minutosInternacionales"),
                         rs.getDouble("costoInternacional"));
                 plan.calcularPagoMensualTotal();
-                
+
                 lista.add(plan);
+
+                obtenerConexion().close();
             }
 
-            String data2 = "Select * from planPostPagoMegas;";
-            rs = statement.executeQuery(data2);
-            while (rs.next()) {
+        } catch (SQLException e) {
+            System.out.println("Exception: insertarPlan");
+            System.out.println(e.getMessage());
 
+        }
+    }
+
+    public void establecerListaPlanPostPagoMegas() {
+
+       try {
+            establecerConexion();
+            Statement statement = obtenerConexion().createStatement();
+            String data = "Select * from planPostPagoMegas";
+            ResultSet rs = statement.executeQuery(data);
+            while (rs.next()) {
+                
                 PlanPostPagoMegas plan = new PlanPostPagoMegas(
-                        rs.getString("nombres"),
+                        rs.getString("nombre"),
+                        
                         rs.getString("pasaporte"),
                         rs.getString("ciudad"),
                         rs.getString("barrio"),
-                        rs.getString("marca"),
-                        rs.getString("modelo"),
-                        rs.getInt("numero"),
-                        rs.getDouble("gigas"),
-                        rs.getDouble("costoGiga"),
-                        rs.getDouble("tarifa"));
+                        rs.getString("marcaCel"),
+                        rs.getString("modeloCel"),
+                        rs.getInt("numCel"),
+                        rs.getDouble("megas"),
+                        rs.getDouble("costoM"),
+                        rs.getDouble("tarifaBase"));
+                
                 plan.calcularPagoMensualTotal();
 
                 lista.add(plan);
             }
+            obtenerConexion().close();
+        } catch (SQLException e) {
+            System.err.println("Exception: DATA linea 205");
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    
+
+    public void establecerListaPlanPostPagoMinutosMegas() {
+
+        try {
+            establecerConexion();
+            Statement statement = obtenerConexion().createStatement();
 
             String data3 = "Select * from planPostPagoMinutosMegas;";
-            rs = statement.executeQuery(data3);
+            ResultSet rs = statement.executeQuery(data3);
             while (rs.next()) {
 
                 PlanPostPagoMin plan = new PlanPostPagoMin(
-                        rs.getString("nombres"),
+                        rs.getString("nombre"),
                         rs.getString("pasaporte"),
                         rs.getString("ciudad"),
                         rs.getString("barrio"),
@@ -238,12 +271,25 @@ public class Enlace {
                 lista.add(plan);
             }
 
+        } catch (SQLException e) {
+            System.out.println("Exception: insertarPlan");
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void establecerListaPlanPostPagoMinutosMegasEconomico() {
+
+        try {
+            establecerConexion();
+            Statement statement = obtenerConexion().createStatement();
+
             String data4 = "Select * from planPostPagoMinutosMegasEconomico;";
-            rs = statement.executeQuery(data4);
+            ResultSet rs = statement.executeQuery(data4);
             while (rs.next()) {
 
                 PlanPostPagoMinMegasEco plan = new PlanPostPagoMinMegasEco(
-                        rs.getString("nombres"),
+                        rs.getString("nombre"),
                         rs.getString("pasaporte"),
                         rs.getString("ciudad"),
                         rs.getString("barrio"),
@@ -253,21 +299,20 @@ public class Enlace {
                         rs.getInt("minutos"),
                         rs.getDouble("costoMinutos"),
                         rs.getInt("gigas"),
-                        rs.getDouble("costoGiga"),
+                        rs.getDouble("costoGigas"),
                         rs.getDouble("descuento"));
                 plan.calcularPagoMensualTotal();
                 lista.add(plan);
             }
 
-            obtenerConexion().close();
         } catch (SQLException e) {
             System.out.println("Exception: insertarPlan");
             System.out.println(e.getMessage());
 
         }
-        
     }
-       public ArrayList<PlanCelular> obtenerLista() {
+
+    public ArrayList<PlanCelular> obtenerLista() {
         return lista;
     }
 

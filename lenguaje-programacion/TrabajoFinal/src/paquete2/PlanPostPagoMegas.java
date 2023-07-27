@@ -71,9 +71,9 @@ public class PlanPostPagoMegas extends PlanCelular {
         cadena = String.format("%s%s", cadena, super.toString());
 
         cadena = String.format("%sNumero de megas(expresado en gigas): %.1f\n"
-                + "Costo de las Megas: %.2f\nTarifa Base: %.2f\nPago total: %.2f\n",
-                 cadena, obtenerMegas(), obtenerCostoMegas(),
-                obtenerTarifaBase(), obtenerPagoMensualTotal());
+                + "Costo de las Megas(expresado en gigas): %.2f\nTarifa Base: %.2f\nPago total: %.2f\n",
+                 cadena, (obtenerMegas()/1000), obtenerCostoMegas(),
+                obtenerTarifaBase(), pagoMensualTotal);
 
         return cadena;
 

@@ -64,35 +64,42 @@ public class Inicio {
 
                     case 1 -> {
 
-                        System.out.println("Ingrese el numero de minutos nacionales"
-                                + " a contratar");
-                        int minutosNacionales = sc.nextInt();
+                        System.out.print("Ingrese el número de minutos:");
+                        int minutos = sc.nextInt();
 
-                        System.out.println("Ingrese el costo del minuto nacional:");
-                        double costoMinutoNacional = sc.nextDouble();
+                        System.out.print("Ingrese el costo de cada minuto:");
+                        double costoMinutos = sc.nextDouble();
 
-                        System.out.println("Ingrese el numero de minutos internacionales"
-                                + " a contratar:");
-                        int minutosInternacionales = sc.nextInt();
+                        System.out.print("Ingrese el número de megas expresado en Gigas:");
+                        int megas = sc.nextInt();
 
-                        System.out.println("Ingrese el costo del minuto internacional:");
-                        double costoMinutoInternacional = sc.nextDouble();
+                        System.out.print("Ingrese el costo de cada Giga:");
+                        double costoGiga = sc.nextDouble();
+                        
+                        System.out.print("Ingrese el Porcentaje de descuento:");
+                        double desc = sc.nextDouble();
 
-                        PlanPostPagoMin planminutos = new PlanPostPagoMin(nombres,
+                        sc.nextLine();
+                        
+                        
+
+                        PlanPostPagoMinMegasEco p = new PlanPostPagoMinMegasEco(nombres,
                                 pasaporte,
                                 ciudad,
                                 barrio,
                                 marca,
                                 modelo,
                                 numero,
-                                minutosNacionales,
-                                costoMinutoNacional,
-                                minutosInternacionales,
-                                costoMinutoInternacional);
+                                minutos,
+                                costoMinutos,
+                                megas,
+                                costoGiga, desc);
+                        
+                        p.calcularPagoMensualTotal();
+                        
 
-                        planminutos.calcularPagoMensualTotal();
-                        c.insertarPlanPostPagoMinutos(planminutos);
-                        System.out.println("Plan creado con exito!");
+                        c.insertarPlanPostPagoMinutosMegasEconomico(p);
+                        //System.out.println("Plan creado con exito!");
 
                     }
                     case 2 -> {
@@ -148,6 +155,7 @@ public class Inicio {
                                 megas,
                                 costoGiga,
                                 tarifa);
+                        p.calcularPagoMensualTotal();
                         c.insertarPlanPostPagoMegas(p);
 
                     }
@@ -179,6 +187,7 @@ public class Inicio {
                                 costoMinutos,
                                 megas,
                                 costoGiga);
+                        p.calcularPagoMensualTotal();
 
                         c.insertarPlanPostPagoMinutosMegas(p);
                     }
@@ -195,12 +204,22 @@ public class Inicio {
 
         } while (opc != 0);
 
-        c.establecerListaPlanCelular();
-
-        System.out.println("=".repeat(75));
-        for (int i = 0; i < c.obtenerLista().size(); i++) {
-            System.out.printf("  Plan (%d):\n%s\n", i + 1, c.obtenerLista().get(i));
+        c.establecerListaPlanPostPagoMegas();
+        c.establecerListaPlanPostPagoMinutos();
+        c.establecerListaPlanPostPagoMinutosMegas();
+        c.establecerListaPlanPostPagoMinutosMegasEconomico();
+        
+        
+        
+        if (c.obtenerLista().size()==0) {
+            System.out.println("No hay nada que mostrar");
+        } else {
+            for (int i = 0; i < c.obtenerLista().size(); i++) {
+                System.out.printf("%s\n", c.obtenerLista().get(i));
+            } 
         }
+
+        
 
     }
 
