@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import paquete2.*;
 
+
 /**
  *
  * @author jean
@@ -37,6 +38,8 @@ public class Enlace {
         }
 
     }
+    
+    
 
     public Connection obtenerConexion() {
         return conn;
