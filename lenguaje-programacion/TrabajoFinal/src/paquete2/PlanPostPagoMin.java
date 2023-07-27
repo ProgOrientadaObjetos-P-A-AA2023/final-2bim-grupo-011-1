@@ -81,7 +81,7 @@ public class PlanPostPagoMin extends PlanCelular {
     @Override
     public String toString() {
 
-        String cadena = String.format("========Plan Post-Pago Minutos=======\n");
+        String cadena = String.format("========Plan Post-Pago Minutos =======\n");
 
         cadena = String.format("%s%s", cadena, super.toString());
 

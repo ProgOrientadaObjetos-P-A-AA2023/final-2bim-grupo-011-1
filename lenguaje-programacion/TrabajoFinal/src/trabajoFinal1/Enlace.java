@@ -109,7 +109,7 @@ public class Enlace {
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO planPostPagoMinutosMegas(nombre,"
+            String dataa = String.format("INSERT INTO planPostPagoMinutosMegas(nombre,"
                     + "pasaporte, ciudad, barrio, marca, modelo, numero, minutos,"
                     + "costoMinutos, gigas, costoGiga, pago)"
                     + "values ('%s', '%s','%s', '%s', '%s', '%s', '%s', %s,"
@@ -121,13 +121,14 @@ public class Enlace {
                     plan.obtenerMarca(),
                     plan.obtenerModelo(),
                     plan.obtenerNumCelular(),
+                    
                     plan.obtenerMinutos(),
                     plan.obtenerCostoMin(),
                     plan.obtenerMegas(),
                     plan.obtenerCostoGiga(),
                     plan.obtenerPagoMensualTotal());
 
-            statement.executeUpdate(data);
+            statement.executeUpdate(dataa);
             obtenerConexion().close();
         } catch (SQLException e) {
             System.out.println("Exception:");
@@ -225,12 +226,12 @@ public class Enlace {
                         rs.getString("pasaporte"),
                         rs.getString("ciudad"),
                         rs.getString("barrio"),
-                        rs.getString("marcaCel"),
-                        rs.getString("modeloCel"),
-                        rs.getInt("numCel"),
-                        rs.getDouble("megas"),
-                        rs.getDouble("costoM"),
-                        rs.getDouble("tarifaBase"));
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getInt("numero"),
+                        rs.getDouble("gigas"),
+                        rs.getDouble("costoGiga"),
+                        rs.getDouble("tarifa"));
                 
                 plan.calcularPagoMensualTotal();
 
@@ -238,7 +239,7 @@ public class Enlace {
             }
             obtenerConexion().close();
         } catch (SQLException e) {
-            System.err.println("Exception: DATA linea 205");
+            System.err.println("Exception: DATA ");
             System.out.println(e.getMessage());
         }
     }
@@ -255,7 +256,7 @@ public class Enlace {
             ResultSet rs = statement.executeQuery(data3);
             while (rs.next()) {
 
-                PlanPostPagoMin plan = new PlanPostPagoMin(
+                PlanPostPagoMinutosMegas plan = new PlanPostPagoMinutosMegas(
                         rs.getString("nombre"),
                         rs.getString("pasaporte"),
                         rs.getString("ciudad"),

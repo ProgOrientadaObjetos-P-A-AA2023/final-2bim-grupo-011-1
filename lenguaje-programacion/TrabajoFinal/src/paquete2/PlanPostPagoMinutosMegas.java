@@ -18,7 +18,8 @@ public class PlanPostPagoMinutosMegas extends PlanCelular {
     private double costoGiga;
     
     public PlanPostPagoMinutosMegas(String nombreApellidoP, String pasaporteP, String ciudadP,
-            String barrioP, String marcaC, String modeloC, int numeroC, int m, double costoM, double megasEnG, double costoPorG) {
+            String barrioP, String marcaC, String modeloC, int numeroC,
+            int m, double costoM, double megasEnG, double costoPorG) {
         // Super
         super(nombreApellidoP, pasaporteP, ciudadP, barrioP,
                 marcaC, modeloC, numeroC);
@@ -76,16 +77,16 @@ public class PlanPostPagoMinutosMegas extends PlanCelular {
 
         cadena = String.format("%s%s", cadena, super.toString());
 
-        cadena = String.format("%sNumero de minutos: %d\n"
+        cadena = String.format("%s Numero de minutos: %d\n"
                 + "Costo de los minutos: %.2f\n"
-                + "Numero de Megas(expresado en gigas): %.1f\n"
+                + "Numero de Megas(expresado en gigas): %.2f\n"
                 + "Costo de las Megas: %.2f\n"
                 + "Total: %.2f\n",
                 cadena, obtenerMinutos(),
                 obtenerCostoMin(),
                 obtenerMegas(),
                 obtenerCostoGiga(),
-                obtenerPagoMensualTotal());
+                pagoMensualTotal);
 
         return cadena;
 

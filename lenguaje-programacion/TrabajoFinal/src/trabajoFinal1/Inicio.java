@@ -169,14 +169,14 @@ public class Inicio {
                         double costoMinutos = sc.nextDouble();
 
                         System.out.print("Ingrese el número de megas expresado en Gigas:");
-                        int megas = sc.nextInt();
+                        int m = sc.nextInt();
 
                         System.out.print("Ingrese el costo de cada Giga:");
-                        double costoGiga = sc.nextDouble();
+                        double costoG = sc.nextDouble();
 
                         sc.nextLine();
 
-                        PlanPostPagoMinutosMegas p = new PlanPostPagoMinutosMegas(nombres,
+                        PlanPostPagoMinutosMegas p1 = new PlanPostPagoMinutosMegas(nombres,
                                 pasaporte,
                                 ciudad,
                                 barrio,
@@ -185,11 +185,11 @@ public class Inicio {
                                 numero,
                                 minutos,
                                 costoMinutos,
-                                megas,
-                                costoGiga);
-                        p.calcularPagoMensualTotal();
+                                m,
+                                costoG);
+                        p1.calcularPagoMensualTotal();
 
-                        c.insertarPlanPostPagoMinutosMegas(p);
+                        c.insertarPlanPostPagoMinutosMegas(p1);
                     }
 
                     case 0 -> {
